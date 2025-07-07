@@ -1,0 +1,41 @@
+/* Ensure your build process uses Tailwind CSS (e.g., via PostCSS) */
+@import "tailwindcss";
+
+.home-footer {
+  color: #fff;
+  background: linear-gradient(135deg, #002F5E 0%, #004494 50%, #1677FF 100%);
+  height: auto;
+  line-height: 1.5;
+  display: flex;
+  justify-content: center;
+  padding: 40px 15px;
+}
+
+/* Ant Design Dark Mode Overrides for Menu Component in Dashboard
+/* Ghi đè màu nền và màu chữ cho menu item đang chọn (selected, active, open, hoặc focus) */
+:where(.ant-menu-dark) .ant-menu-item-selected,
+:where(.ant-menu-dark) .ant-menu-submenu-selected,
+:where(.ant-menu-dark) .ant-menu-item-active,
+:where(.ant-menu-dark) .ant-menu-item-open,
+:where(.ant-menu-dark) .ant-menu-item:focus {
+  background-color: #1677ff !important;
+  color: #fff !important;
+}
+:where(.ant-menu-dark) .ant-menu-item-selected .ant-menu-title-content,
+:where(.ant-menu-dark) .ant-menu-item-selected .anticon,
+:where(.ant-menu-dark) .ant-menu-submenu-selected .ant-menu-title-content,
+:where(.ant-menu-dark) .ant-menu-submenu-selected .anticon,
+:where(.ant-menu-dark) .ant-menu-item-active .ant-menu-title-content,
+:where(.ant-menu-dark) .ant-menu-item-active .anticon,
+:where(.ant-menu-dark) .ant-menu-item-open .ant-menu-title-content,
+:where(.ant-menu-dark) .ant-menu-item-open .anticon,
+:where(.ant-menu-dark) .ant-menu-item:focus .ant-menu-title-content,
+:where(.ant-menu-dark) .ant-menu-item:focus .anticon {
+  color: #fff !important;
+}
+:where(.ant-menu-dark) .ant-menu-item-selected,
+:where(.ant-menu-dark) .ant-menu-item-active,
+:where(.ant-menu-dark) .ant-menu-item-open,
+:where(.ant-menu-dark) .ant-menu-item:focus {
+  border-radius: 6px !important;
+}

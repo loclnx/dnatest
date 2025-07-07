@@ -1,0 +1,810 @@
+/* Ngăn thanh cuộn ngang toàn trang */
+html,
+body {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+/* Register Container - FIX CENTER ALIGNMENT */
+.register-container {
+  min-height: 100vh;
+  width: 100%;
+  overflow-x: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f5f5f5;
+  padding: 15px;
+  box-sizing: border-box;
+  flex-direction: column;
+  text-align: center;
+}
+
+.register-logo {
+  max-width: 120px;
+  margin-bottom: 12px;
+}
+
+.register-title {
+  font-size: 2.2rem;
+  font-weight: bold;
+  margin-bottom: 0.3rem;
+  text-align: center;
+  background: linear-gradient(
+    90deg,
+    #1f6bd6 30%,
+    #0e3976 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: 1px;
+}
+
+.register-subtitle {
+  font-size: 1rem;
+  color: #b0b3b8;
+  margin-top: 0.5rem;
+  margin-bottom: 0.8rem;
+  text-align: center;
+}
+
+.register-form {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.08);
+  padding: 15px 4px 15px 4px;
+  width: 100%;
+  max-width: 650px;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: auto;
+  gap: 0;
+  margin: 0 auto;
+  position: relative;
+}
+
+.form-header {
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.form-header h1 {
+  color: #262626;
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+
+.form-header p {
+  color: #8c8c8c;
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+.register-form-content {
+  margin-top: 0;
+  width: 100%;
+}
+
+.form-field {
+  margin-bottom: 6px;
+}
+
+.form-field .ant-form-item-label > label {
+  font-weight: 500;
+  color: #262626;
+  font-size: 12px;
+  margin-bottom: 1px;
+}
+
+/* Input thường */
+.form-field .ant-input {
+  height: 36px;
+  border-radius: 6px;
+  border: 1px solid #d9d9d9;
+  padding: 4px 8px;
+  font-size: 13px;
+  transition: border-color 0.3s;
+}
+
+/* FIX INPUT PASSWORD - TRIỆT ĐỂ */
+.form-field .ant-input-password {
+  height: 36px;
+  border-radius: 6px;
+  border: 1px solid #d9d9d9;
+  font-size: 13px;
+  transition: border-color 0.3s;
+  padding: 0 !important; /* Loại bỏ hoàn toàn padding của wrapper */
+}
+
+/* Fix input bên trong password wrapper */
+.form-field .ant-input-password .ant-input {
+  border: none !important;
+  padding: 4px 8px !important; /* Padding giống input thường */
+  box-shadow: none !important;
+  height: 100% !important;
+  background: transparent !important;
+  outline: none !important;
+  margin: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  position: relative !important;
+}
+
+/* Fix icon eye position */
+.form-field .ant-input-password .ant-input-suffix {
+  position: absolute !important;
+  right: 8px !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  z-index: 2 !important;
+}
+
+/* Hover states */
+.form-field .ant-input:hover,
+.form-field .ant-input-password:hover {
+  border-color: #40a9ff;
+}
+
+/* Focus states */
+.form-field .ant-input:focus,
+.form-field .ant-input-password:focus,
+.form-field .ant-input-focused,
+.form-field .ant-input-password-focused {
+  border-color: #1890ff;
+  box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
+}
+
+/* Placeholder styling */
+.form-field .ant-input::placeholder,
+.form-field .ant-input-password input::placeholder,
+.form-field .ant-input-password .ant-input::placeholder {
+  color: #bfbfbf !important;
+}
+
+/* FIX SELECT GENDER - CĂN TRÁI GIỐNG INPUT */
+.form-field .ant-select {
+  width: 100% !important;
+}
+
+.form-field .ant-select-selector {
+  height: 36px !important;
+  border-radius: 6px !important;
+  border: 1px solid #d9d9d9 !important;
+  padding: 0 8px !important; /* GIỐNG INPUT THƯỜNG: 4px 8px nhưng chỉ cần horizontal */
+  font-size: 13px !important;
+  display: flex !important;
+  align-items: center !important;
+  text-align: left !important;
+}
+
+/* Fix placeholder và selection để căn trái chính xác */
+.form-field .ant-select-selection-placeholder {
+  color: #bfbfbf !important;
+  text-align: left !important;
+  padding-left: 0 !important; /* Loại bỏ padding thừa */
+  margin-left: 0 !important;
+  line-height: 36px !important;
+  display: flex !important;
+  align-items: center !important;
+}
+
+.form-field .ant-select-selection-item {
+  color: #262626 !important;
+  text-align: left !important;
+  padding-left: 0 !important; /* Loại bỏ padding thừa */
+  margin-left: 0 !important;
+  line-height: 36px !important;
+  display: flex !important;
+  align-items: center !important;
+}
+
+/* Fix search input trong select */
+.form-field .ant-select-selection-search {
+  display: flex !important;
+  align-items: center !important;
+  height: 100% !important;
+  margin-left: 0 !important;
+  padding-left: 0 !important;
+}
+
+.form-field .ant-select-selection-search-input {
+  padding-left: 0 !important;
+  margin-left: 0 !important;
+}
+
+/* mũi tên box Gender */
+.form-field .ant-select-arrow {
+  right: 8px !important; /* GIỐNG INPUT: right 8px */
+  top: 50% !important; /* Đặt ở giữa */
+  margin-top: 7px !important; /* Loại bỏ margin-top */
+  transform: translateY(-50%) !important; /* Center hoàn hảo */
+  font-size: 12px !important; /* Đảm bảo size icon */
+}
+
+/* Hover và focus states */
+.form-field .ant-select:hover .ant-select-selector {
+  border-color: #40a9ff !important;
+}
+
+.form-field .ant-select-focused .ant-select-selector,
+.form-field .ant-select:focus .ant-select-selector {
+  border-color: #1890ff !important;
+  box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2) !important;
+}
+
+/* Remember Checkbox - CĂN TRÁI VÀ TO HƠN - FIX ALIGNMENT */
+.remember-checkbox {
+  margin-bottom: 6px;
+  margin-top: 2px;
+  text-align: left;
+  width: 100%;
+}
+
+.remember-checkbox .ant-checkbox-wrapper {
+  color: #595959;
+  font-size: 14px;
+  text-align: left;
+  display: flex !important;
+  align-items: center !important; /* Thay đổi từ flex-start thành center */
+  line-height: 1.4;
+  gap: 8px; /* Thêm gap để spacing đều */
+}
+
+.remember-checkbox .ant-checkbox {
+  margin-right: 0 !important; /* Bỏ margin-right vì đã có gap */
+  margin-top: 0 !important; /* Đảm bảo không có margin-top */
+  flex-shrink: 0; /* Ngăn checkbox bị co lại */
+}
+
+.remember-checkbox .ant-checkbox .ant-checkbox-inner {
+  width: 18px;
+  height: 18px;
+  border-radius: 4px;
+  vertical-align: baseline !important; /* Fix vertical alignment */
+}
+
+.remember-checkbox .ant-checkbox-checked .ant-checkbox-inner {
+  background-color: #1890ff;
+  border-color: #1890ff;
+}
+
+.remember-checkbox .ant-checkbox:hover .ant-checkbox-inner {
+  border-color: #1890ff;
+}
+
+.remember-checkbox .ant-checkbox-checked .ant-checkbox-inner::after {
+  width: 6px;
+  height: 10px;
+  left: 5px;
+  top: 8px;
+}
+
+/* Fix cho text label */
+.remember-checkbox .ant-checkbox-wrapper > span:last-child {
+  line-height: 18px !important; /* Căn chỉnh với height của checkbox */
+}
+.form-actions .ant-btn {
+  height: 36px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  background-color: #1890ff;
+  border-color: #1890ff;
+}
+
+.form-actions .ant-btn:hover {
+  background-color: #40a9ff;
+  border-color: #40a9ff;
+}
+
+.form-actions .ant-btn:focus {
+  background-color: #096dd9;
+  border-color: #096dd9;
+}
+
+.ant-form-item-explain-error {
+  color: #ff4d4f;
+  font-size: 11px;
+}
+
+.ant-form-item-feedback-icon {
+  color: #52c41a;
+}
+
+.form-row {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 -6px;
+  width: 100%;
+  justify-content: center;
+}
+
+.form-col {
+  flex: 1;
+  padding: 0 6px;
+  min-width: 47%;
+}
+
+.remember-checkbox {
+  margin-top: 6px;
+}
+
+.register-form {
+  max-width: 650px;
+  width: 100%;
+  padding: 25px;
+}
+
+.register-form-content .ant-picker {
+  height: 36px !important;
+}
+
+.google-login-section {
+  margin: 18px 0;
+  text-align: center;
+  width: 100%;
+}
+
+.google-login-label {
+  display: block;
+  margin-bottom: 20px;
+  font-size: 1rem;
+  color: #b0b3b8;
+  text-align: center;
+}
+
+@media (max-width: 480px) {
+  .register-container {
+    min-height: 100vh;
+    height: auto;
+    width: 100vw;
+    max-width: 100vw;
+    box-sizing: border-box;
+    padding: 8px;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .register-form {
+    padding: 12px;
+    max-width: 95%;
+    width: 95%;
+    box-sizing: border-box;
+    margin: 0 auto;
+    border-radius: 8px;
+    min-height: unset;
+    height: auto;
+  }
+
+  .form-header h1 {
+    font-size: 15px;
+  }
+
+  .form-header p {
+    font-size: 10px;
+  }
+
+  .form-field {
+    margin-bottom: 6px;
+  }
+
+  .form-field .ant-form-item-label > label {
+    font-size: 10px;
+    margin-bottom: 0;
+  }
+
+  .form-field .ant-input,
+  .form-field select {
+    height: 30px;
+    padding: 2px 6px;
+    font-size: 11px;
+  }
+
+  /* Password input responsive - FIX TRIỆT ĐỂ */
+  .form-field .ant-input-password {
+    height: 30px !important;
+    font-size: 11px !important;
+    padding: 0 !important;
+  }
+
+  .form-field .ant-input-password .ant-input {
+    padding: 2px 6px !important;
+    font-size: 11px !important;
+    height: 100% !important;
+  }
+
+  .form-field .ant-input-password .ant-input-suffix {
+    right: 6px !important;
+  }
+
+  /* Select responsive cho mobile - FIX ARROW CENTER */
+  .form-field .ant-select-selector {
+    height: 30px !important;
+    font-size: 11px !important;
+    padding: 0 6px !important; /* Giống input mobile */
+  }
+
+  .form-field .ant-select-selection-item,
+  .form-field .ant-select-selection-placeholder {
+    line-height: 30px !important;
+  }
+
+  .form-field .ant-select-arrow {
+    right: 6px !important; /* Giống input mobile */
+    top: 50% !important;
+    margin-top: 0 !important; /* Loại bỏ margin-top */
+    transform: translateY(-50%) !important; /* Center cho mobile */
+    font-size: 10px !important; /* Size nhỏ hơn cho mobile */
+  }
+
+  .remember-checkbox {
+    margin-bottom: 6px;
+    margin-top: 2px;
+  }
+
+  .remember-checkbox .ant-checkbox-wrapper {
+    font-size: 12px;
+     gap: 6px;
+  }
+
+  .remember-checkbox .ant-checkbox .ant-checkbox-inner {
+    width: 16px;
+    height: 16px;
+  }
+  /* Fix text alignment cho mobile */
+  .remember-checkbox .ant-checkbox-wrapper > span:last-child {
+    line-height: 16px !important;
+  }
+
+  .form-actions .ant-btn {
+    height: 30px;
+    font-size: 11px;
+  }
+
+  .form-row {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .form-col {
+    flex: 0 0 calc(50% - 12px);
+    width: calc(50% - 12px);
+    min-width: calc(50% - 12px);
+  }
+}
+
+@media (max-width: 768px) {
+  .register-container {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    height: auto;
+    padding: 12px;
+    text-align: center;
+  }
+
+  .register-form {
+    margin: 0 auto;
+    padding: 18px 12px;
+    max-width: 90%;
+    width: 90%;
+  }
+
+  .form-row {
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .form-col {
+    flex: 0 0 calc(50% - 12px);
+    width: calc(50% - 12px);
+    min-width: calc(50% - 12px);
+  }
+
+  .form-field {
+    margin-bottom: 8px;
+  }
+
+  .form-field .ant-form-item-label > label {
+    font-size: 11px;
+    margin-bottom: 1px;
+  }
+
+  .form-field .ant-input,
+  .form-field select {
+    height: 34px;
+    padding: 4px 8px;
+    font-size: 12px;
+  }
+
+  /* Password input responsive tablet - FIX TRIỆT ĐỂ */
+  .form-field .ant-input-password {
+    height: 34px !important;
+    font-size: 12px !important;
+    padding: 0 !important;
+  }
+
+  .form-field .ant-input-password .ant-input {
+    padding: 4px 8px !important;
+    font-size: 12px !important;
+    height: 100% !important;
+  }
+
+  .form-field .ant-input-password .ant-input-suffix {
+    right: 8px !important;
+  }
+
+  /* Select responsive cho tablet - FIX ARROW CENTER */
+  .form-field .ant-select-selector {
+    height: 34px !important;
+    font-size: 12px !important;
+    padding: 0 8px !important; /* Giống input tablet */
+  }
+
+  .form-field .ant-select-selection-item,
+  .form-field .ant-select-selection-placeholder {
+    line-height: 34px !important;
+  }
+
+  .form-field .ant-select-arrow {
+    right: 8px !important; /* Giống input tablet */
+    top: 50% !important;
+    margin-top: 0 !important; /* Loại bỏ margin-top */
+    transform: translateY(-50%) !important; /* Center cho tablet */
+    font-size: 11px !important; /* Size phù hợp cho tablet */
+  }
+
+  .form-header {
+    margin-bottom: 12px;
+  }
+
+  .form-header h1 {
+    font-size: 16px;
+    margin-bottom: 2px;
+  }
+
+  .form-header p {
+    font-size: 11px;
+  }
+
+  .remember-checkbox {
+    margin-bottom: 8px;
+    margin-top: 4px;
+    width: 100%;
+  }
+
+  .form-actions {
+    width: 100%;
+  }
+
+  .remember-checkbox .ant-checkbox-wrapper {
+    font-size: 13px;
+    gap: 7px;
+  }
+  /* Fix text alignment cho tablet */
+  .remember-checkbox .ant-checkbox-wrapper > span:last-child {
+    line-height: 17px !important;
+  }
+
+  .form-actions .ant-btn {
+    height: 34px;
+    font-size: 12px;
+    width: 100%;
+  }
+}
+
+.helper-text {
+  color: #222;
+  text-align: center;
+  margin-top: 10px;
+  font-size: 0.95rem;
+  width: 100%;
+}
+
+.helper-text a {
+  color: #1f6bd6;
+  text-decoration: underline;
+  transition: color 0.2s;
+}
+
+.helper-text a:hover {
+  color: #0e3976;
+}
+
+/* OTP Verification Component Styles - giữ nguyên */
+.otp-verification-container {
+  padding: 20px;
+  background-color: white;
+  border-radius: 8px;
+  min-width: 320px;
+  text-align: center;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+}
+
+.otp-verification-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.otp-verification-subtitle {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 20px;
+  line-height: 1.4;
+}
+
+.otp-verification-email {
+  font-weight: bold;
+  color: #1890ff;
+}
+
+.otp-input {
+  margin-bottom: 15px;
+  text-align: center;
+  font-size: 16px;
+  letter-spacing: 2px;
+  height: 40px;
+  border-radius: 6px;
+  border: 1px solid #d9d9d9;
+  padding: 8px 12px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.otp-input:focus {
+  border-color: #1890ff;
+  box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
+  outline: none;
+}
+
+.otp-input::placeholder {
+  color: #bfbfbf;
+  letter-spacing: normal;
+}
+
+.otp-verify-button {
+  width: 100%;
+  margin-bottom: 10px;
+  height: 40px;
+  border-radius: 6px;
+  background-color: #1890ff;
+  border: 1px solid #1890ff;
+  color: white;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.otp-verify-button:hover:not(:disabled) {
+  background-color: #40a9ff;
+  border-color: #40a9ff;
+}
+
+.otp-verify-button:disabled {
+  background-color: #f5f5f5;
+  border-color: #d9d9d9;
+  color: rgba(0, 0, 0, 0.25);
+  cursor: not-allowed;
+}
+
+.otp-actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.otp-resend-button,
+.otp-cancel-button {
+  flex: 1;
+  height: 36px;
+  border-radius: 6px;
+  background-color: white;
+  border: 1px solid #d9d9d9;
+  color: #595959;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.otp-resend-button:hover,
+.otp-cancel-button:hover {
+  border-color: #40a9ff;
+  color: #40a9ff;
+}
+
+.otp-resend-button:disabled {
+  background-color: #f5f5f5;
+  border-color: #d9d9d9;
+  color: rgba(0, 0, 0, 0.25);
+  cursor: not-allowed;
+}
+
+.Toastify__toast--otp {
+  padding: 0 !important;
+  background-color: transparent !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+}
+
+.otp-button-loading {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 2px solid #ffffff;
+  border-radius: 50%;
+  border-top-color: transparent;
+  animation: spin 1s ease-in-out infinite;
+  margin-right: 8px;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 480px) {
+  .otp-verification-container {
+    min-width: 280px;
+    padding: 15px;
+  }
+
+  .otp-verification-title {
+    font-size: 16px;
+  }
+
+  .otp-verification-subtitle {
+    font-size: 13px;
+  }
+
+  .otp-input {
+    height: 36px;
+    font-size: 14px;
+  }
+
+  .otp-verify-button {
+    height: 36px;
+    font-size: 13px;
+  }
+
+  .otp-resend-button,
+  .otp-cancel-button {
+    height: 32px;
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 768px) {
+  .otp-verification-container {
+    min-width: 300px;
+    padding: 18px;
+  }
+
+  .otp-input {
+    height: 38px;
+    font-size: 15px;
+  }
+
+  .otp-verify-button {
+    height: 38px;
+  }
+
+  .otp-resend-button,
+  .otp-cancel-button {
+    height: 34px;
+  }
+}
