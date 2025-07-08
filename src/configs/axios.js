@@ -4,7 +4,7 @@ import { selectToken } from "../redux/features/userSlice"
 
 // Set config defaults when creating the instance
 const api = axios.create({
-  baseURL: "http://103.90.227.214:8080/api",
+  baseURL: "http://172.20.10.4:8080/api",
 })
 
 // Authentication helper functions
